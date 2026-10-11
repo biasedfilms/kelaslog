@@ -1,0 +1,10 @@
+# Build output
+kelaslog
+*.o
+
+# Local records and exports
+students.db
+attendance.db
+*.db.tmp
+students_export.csv
+attendance_export.csv
