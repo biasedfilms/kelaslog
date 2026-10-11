@@ -1,17 +1,21 @@
-# KelasLog v0.1
+# KelasLog v0.2
 
-A small student-record program written in C. I made this as a command-line project to practice structs, functions, arrays, input validation, and reading/writing files.
+KelasLog is a command-line student and attendance tracker written in C. This version builds on the student list and adds dated attendance records.
 
 ## Features
 
-- Add a student with an ID, name, and class/section
-- List all saved students
-- Find a student by ID
-- Edit a student's name or class
-- Save records in `students.db`, so they are still there next time
-- Reject duplicate student IDs
+- Add, list, search, and edit student records
+- Record attendance as Present, Absent, Excused, or Sick
+- View the attendance records for a date
+- View a student's attendance totals and rate
+- Save student and attendance data between runs
+- Reject invalid dates and duplicate attendance for the same student on the same date
 
-The program supports up to 100 students in this version. IDs are case-insensitive on input and are stored in uppercase. The `|` character is reserved for the local data format, so it is not accepted in fields.
+There is room for 100 students and 5,000 attendance records. The program records one student at a time, which keeps this version small enough to follow and improve.
+
+## Attendance percentage
+
+The rate is calculated as `Present / (Present + Absent) * 100`. Excused and Sick entries are not included in the denominator. A student with no Present or Absent entries is shown as `N/A`.
 
 ## Build and run
 
@@ -28,29 +32,26 @@ To remove the compiled program:
 make clean
 ```
 
-You can also compile it directly:
+Or compile directly:
 
 ```sh
 cc -std=c11 -Wall -Wextra -Wpedantic -Iinclude src/*.c -o kelaslog
 ```
 
-## Files
+## Data files
 
-- `src/main.c` contains the menu and the main flow.
-- `src/student.c` contains the basic student-list operations.
-- `src/storage.c` loads and saves the records.
-- `src/input.c` handles keyboard input and validation.
-- `include/` contains the matching header files.
+- `students.db`: `ID|Name|Class`
+- `attendance.db`: `ID|YYYY-MM-DD|Status`
 
-`students.db` is created in the folder where you run the program. It is a plain text file; each line contains `ID|Name|Class`. It is local data, not a database server.
+Both files are plain text and are created in the folder where you run the program. Back them up manually if you need to keep the data.
 
 ## Current limits
 
-This is a terminal app for a small class, not a multi-user system. It has no login, network access, or backup automation. Keep a copy of `students.db` if the records matter.
+This is intended for one person using one computer. There is no account system, cloud sync, or simultaneous editing. Attendance is entered individually, rather than marking an entire class in one step.
 
 ## Next version
 
-The next version will add dated attendance records and a summary for each student.
+The next version will add a low-attendance report, CSV export, and a few quality-of-life improvements.
 
 ## License
 

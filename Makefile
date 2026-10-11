@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -std=c11 -Wall -Wextra -Wpedantic -O2 -Iinclude
 
-SOURCES = src/main.c src/input.c src/student.c src/storage.c
+SOURCES = src/main.c src/input.c src/student.c src/storage.c src/attendance.c
 
 .PHONY: all clean run
 
